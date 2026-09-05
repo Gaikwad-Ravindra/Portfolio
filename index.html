@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ravindr Gaikwad - Portfolio</title>
+  <title>Ravindra Gaikwad - Portfolio</title>
 
   <!-- External Icons & Devicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
@@ -16,6 +16,10 @@
   <!-- Lenis Smooth Scroll -->
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="/gemini-svg.svg" />
+
+  <!-- EmailJS SDK (Stable v3) -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
   <style>
     :root {
@@ -30,6 +34,7 @@
       --border-subtle: rgba(26, 107, 92, 0.16);
       --shadow-sm: 0 4px 14px rgba(0, 50, 40, 0.04);
       --shadow-3d: 0 25px 50px -12px rgba(15, 35, 45, 0.18), 0 0 25px rgba(23, 101, 88, 0.08);
+      --footer-bg: #d8ece7;
     }
 
     * {
@@ -39,7 +44,6 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     }
 
-    /* Lenis Smooth Scroll Core */
     html.lenis, html.lenis body {
       height: auto;
     }
@@ -62,8 +66,14 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
     /* ========================================================= */
-    /* Hero Section (Atmospheric Gradient & Canvas)              */
+    /* Hero Section                                              */
     /* ========================================================= */
     .hero-wrapper {
       position: relative;
@@ -534,7 +544,7 @@
     }
 
     /* ========================================================= */
-    /* Section 3: 3D True Perspective Pinned Stack Deck         */
+    /* Section 3: 3D Perspective Pinned Stack Deck               */
     /* ========================================================= */
     .projects-section {
       position: relative;
@@ -553,7 +563,7 @@
       width: 100%;
       max-width: 960px;
       height: 740px;
-      perspective: 1600px; /* Enhanced 3D field */
+      perspective: 1600px;
       perspective-origin: 50% 50%;
       transform-style: preserve-3d;
       display: flex;
@@ -709,15 +719,544 @@
       transform: translateZ(10px);
     }
 
+    /* ========================================================= */
+    /* Section 4: Compact Contact Us                             */
+    /* ========================================================= */
+    .contact-section {
+      background-color: #ffffff;
+      padding: 48px 0;
+      position: relative;
+      border-top: 1px solid #e2ebe8;
+    }
+
+    .contact-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 28px auto;
+    }
+
+    .contact-header .section-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #176558;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: inline-block;
+      background: #edf7f4;
+      padding: 3px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(23, 101, 88, 0.15);
+    }
+
+    .contact-header .section-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #11222c;
+      letter-spacing: -0.6px;
+      margin-bottom: 8px;
+    }
+
+    .contact-subtitle {
+      font-size: 0.92rem;
+      color: #526b75;
+      line-height: 1.5;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.25fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .contact-info-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1px solid #e3ede9;
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 2px 8px rgba(17, 34, 44, 0.02);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .info-card:hover {
+      border-color: #176558;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(23, 101, 88, 0.08);
+    }
+
+    .info-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #edf7f4;
+      border: 1px solid rgba(23, 101, 88, 0.18);
+      color: #176558;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+
+    .info-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .info-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #7b949e;
+    }
+
+    .info-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #11222c;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a.info-value:hover {
+      color: #176558;
+    }
+
+    .direct-chat-box {
+      background: #f7faf9;
+      border: 1px solid #dce8e4;
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: auto;
+    }
+
+    .direct-chat-text h4 {
+      margin: 0 0 2px 0;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #11222c;
+    }
+
+    .direct-chat-text p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: #5c747e;
+      line-height: 1.4;
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: #ffffff;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1eb956;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35);
+      color: #ffffff;
+    }
+
+    .contact-form-panel {
+      background: #ffffff;
+      border: 1px solid #dce8e4;
+      border-radius: 16px;
+      padding: 22px 24px;
+      box-shadow: 0 4px 18px rgba(17, 34, 44, 0.03);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e333d;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 9px 13px;
+      border-radius: 8px;
+      border: 1px solid #dce5e2;
+      background: #fafcfb;
+      color: #11222c;
+      font-size: 0.88rem;
+      outline: none;
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 85px;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #92a4ac;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #176558;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(23, 101, 88, 0.08);
+    }
+
+    .btn-submit {
+      align-self: flex-start;
+      background: #176558;
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(23, 101, 88, 0.22);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-top: 2px;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: #0f443b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(23, 101, 88, 0.32);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-status {
+      display: none;
+      font-size: 0.86rem;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-top: 4px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .form-status.success {
+      display: block;
+      background-color: #e6f7f2;
+      color: #0f624d;
+      border: 1px solid #b2e4d5;
+    }
+
+    .form-status.error {
+      display: block;
+      background-color: #fde8e8;
+      color: #c81e1e;
+      border: 1px solid #f8b4b4;
+    }
+
+    /* ========================================================= */
+    /* Section 5: Refined Footer (#d8ece7 BG)                    */
+    /* ========================================================= */
+    .portfolio-footer {
+      background-color: var(--footer-bg);
+      color: #213740;
+      position: relative;
+      padding: 55px 0 28px 0;
+      border-top: 1px solid rgba(23, 101, 88, 0.18);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr 1fr;
+      gap: 36px;
+      align-items: start;
+      margin-bottom: 32px;
+    }
+
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .footer-profile-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+      box-shadow: 0 4px 12px rgba(23, 101, 88, 0.2);
+    }
+
+    .brand-logo {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #0d2830;
+      letter-spacing: -0.5px;
+      margin: 0;
+    }
+
+    .brand-logo span {
+      color: var(--primary);
+    }
+
+    .brand-desc {
+      color: #3b5058;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      max-width: 360px;
+      margin-bottom: 16px;
+    }
+
+    .footer-social-icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-social-icons a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(23, 101, 88, 0.2);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .footer-social-icons a:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(23, 101, 88, 0.25);
+    }
+
+    .footer-col-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0e2229;
+      margin-bottom: 14px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-col-title::after {
+      content: "";
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--primary);
+      margin-top: 4px;
+      border-radius: 2px;
+    }
+
+    .footer-nav-list,
+    .footer-contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-nav-list li,
+    .footer-contact-list li {
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: #3b5058;
+    }
+
+    .footer-nav-list a {
+      color: #3b5058;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-block;
+      font-weight: 500;
+    }
+
+    .footer-nav-list a:hover {
+      color: var(--primary);
+      transform: translateX(4px);
+    }
+
+    .footer-contact-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      line-height: 1.4;
+    }
+
+    .footer-contact-list li i {
+      color: var(--primary);
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    .footer-contact-list a {
+      color: #3b5058;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      font-weight: 500;
+    }
+
+    .footer-contact-list a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    .footer-query-widget {
+      max-width: 620px;
+      margin: 10px auto 26px auto;
+      text-align: center;
+    }
+
+    .query-link {
+      text-decoration: none;
+      display: block;
+    }
+
+    .query-search-box {
+      background: #ffffff;
+      border-radius: 50px;
+      padding: 8px 12px 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 6px 20px rgba(23, 101, 88, 0.08);
+      border: 1px solid rgba(23, 101, 88, 0.25);
+      transition: all 0.3s ease;
+    }
+
+    .query-search-box:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(23, 101, 88, 0.15);
+    }
+
+    .query-input-placeholder {
+      color: #173832;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .query-arrow-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #edf7f4;
+      border: 1px solid rgba(23, 101, 88, 0.2);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .query-search-box:hover .query-arrow-btn {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .query-disclaimer {
+      font-size: 0.76rem;
+      color: #4b6762;
+      margin-top: 8px;
+    }
+
+    .footer-divider {
+      height: 1px;
+      width: 100%;
+      background: rgba(23, 101, 88, 0.18);
+      margin-bottom: 18px;
+    }
+
+    .footer-sub-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #48645e;
+    }
+
+    .footer-sub-bar p {
+      margin: 0;
+    }
+
+    .accent-text {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
     .scroll-top {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       background: var(--accent-teal);
       color: #ffffff;
-      border-radius: 12px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -732,9 +1271,7 @@
       background: var(--primary-dark);
     }
 
-    /* ========================================================= */
-    /* Media Queries & Responsive Adaptations                   */
-    /* ========================================================= */
+    /* Responsive Adjustments */
     @media (max-width: 992px) {
       #badges-container,
       .floating-badge {
@@ -783,6 +1320,16 @@
       .project-index {
         transform: none;
       }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
     }
 
     @media (max-width: 600px) {
@@ -801,13 +1348,37 @@
       .cards-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+      .contact-section {
+        padding: 38px 0;
+      }
+      .contact-header .section-title {
+        font-size: 1.8rem;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .contact-form-panel {
+        padding: 18px 16px;
+      }
+      .direct-chat-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .btn-submit {
+        width: 100%;
+        justify-content: center;
+      }
+      .footer-sub-bar {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
   <!-- ================= SECTION 1: HERO ================= -->
-  <div class="hero-wrapper">
+  <div class="hero-wrapper" id="home">
     <div id="badges-container"></div>
     <canvas id="network-canvas"></canvas>
 
@@ -818,7 +1389,7 @@
           Ravindra Gaikwad
         </a>
         <ul class="nav-links">
-          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#home" class="active">Home</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#experience">Experience</a></li>
           <li><a href="#education">Education</a></li>
@@ -858,7 +1429,6 @@
       <h2 class="section-title gs-reveal">Skills &amp; Experience</h2>
 
       <div class="main-grid">
-        <!-- Left Column: Categorized Grid Cards -->
         <div class="skills-column">
 
           <!-- Backend -->
@@ -1006,8 +1576,6 @@
         <!-- Right Column: Timeline -->
         <div class="timeline-column gs-reveal" id="experience">
           <div class="timeline-wrapper">
-
-            <!-- Experience -->
             <div class="timeline-section-heading">
               <i class="fa-solid fa-briefcase"></i> Work Experience
             </div>
@@ -1033,7 +1601,6 @@
               </div>
             </div>
 
-            <!-- Education -->
             <div class="timeline-section-heading education-head" id="education">
               <i class="fa-solid fa-graduation-cap"></i> Education &amp; Certifications
             </div>
@@ -1066,7 +1633,6 @@
                 <div class="timeline-location">Maharashtra State Board</div>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -1091,7 +1657,7 @@
         <div class="project-content">
           <div class="card-top">
             <h3 class="project-name">Online ATM System</h3>
-            <a href="https://github.com" target="_blank" class="project-link-icon" title="View Source">
+            <a href="https://github.com/Gaikwad-Ravindra" target="_blank" class="project-link-icon" title="View Source">
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
           </div>
@@ -1118,7 +1684,7 @@
         <div class="project-content">
           <div class="card-top">
             <h3 class="project-name">Local Worker Finder Application</h3>
-            <a href="https://github.com" target="_blank" class="project-link-icon" title="View Source">
+            <a href="https://github.com/Gaikwad-Ravindra" target="_blank" class="project-link-icon" title="View Source">
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
           </div>
@@ -1163,12 +1729,248 @@
     </div>
   </section>
 
+  <!-- ================= SECTION 4: COMPACT CONTACT US ================= -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="contact-header">
+        <div class="section-tag">Get In Touch</div>
+        <h2 class="section-title">Let's Work Together</h2>
+        <p class="contact-subtitle">
+          Have a project in mind, need a full-stack engineer, or just want to connect? Drop a message or reach out directly!
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Left Column: Contact Details -->
+        <div class="contact-info-panel">
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="info-body">
+              <span class="info-label">Email Me</span>
+              <a href="mailto:ravindragaikwad1818@gmail.com" class="info-value">ravindragaikwad1818@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="info-body">
+              <span class="info-label">Call / WhatsApp</span>
+              <a href="tel:+919665689951" class="info-value">+91 9665689951</a>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div class="info-body">
+              <span class="info-label">Location</span>
+              <span class="info-value">Pune, Maharashtra, India</span>
+            </div>
+          </div>
+
+          <div class="direct-chat-box">
+            <div class="direct-chat-text">
+              <h4>Quick Discussion?</h4>
+              <p>I usually respond within a few hours on WhatsApp.</p>
+            </div>
+            <a href="https://wa.me/919665689951" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i> Chat Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: EmailJS Form -->
+        <div class="contact-form-panel">
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="userName">Your Name</label>
+                <input type="text" id="userName" name="from_name" placeholder="John Doe" required />
+              </div>
+              <div class="form-group">
+                <label for="userEmail">Your Email</label>
+                <input type="email" id="userEmail" name="from_email" placeholder="john@example.com" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="userSubject">Subject</label>
+              <input type="text" id="userSubject" name="subject" placeholder="Project Inquiry / Job Opportunity" required />
+            </div>
+
+            <div class="form-group">
+              <label for="userMessage">Your Message</label>
+              <textarea id="userMessage" name="message" rows="3" placeholder="Tell me about your project or inquiry..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-submit" id="submitBtn">
+              <span id="btnText">Send Message</span>
+              <i class="fa-solid fa-paper-plane" id="btnIcon"></i>
+            </button>
+
+            <div class="form-status" id="formStatus"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 5: FOOTER (#d8ece7 BG) ================= -->
+  <footer class="portfolio-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand & Profile -->
+        <div class="footer-brand-col">
+          <div class="brand-header">
+            <img src="assets/images/profile.jpg" alt="Ravindra Gaikwad" class="footer-profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Ravindra+Gaikwad&background=176558&color=fff&rounded=true&bold=true'" />
+            <h2 class="brand-logo"><span>R</span>avindra</h2>
+          </div>
+          <p class="brand-desc">
+            A passionate Full Stack Developer building modern, scalable, and responsive web applications.
+          </p>
+          <div class="footer-social-icons">
+            <a href="https://github.com/Gaikwad-Ravindra" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ravindra-gaikwad-389a5328a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <!-- <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a> -->
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="footer-links-col">
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-nav-list">
+            <li><a href="#home">› Home</a></li>
+            <li><a href="#skills">› Skills</a></li>
+            <li><a href="#experience">› Experience</a></li>
+            <li><a href="#education">› Education</a></li>
+            <li><a href="#projects-pin-section">› Projects</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Direct Contact Details -->
+        <div class="footer-contact-col">
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-contact-list">
+            <li>
+              <i class="fa-solid fa-envelope"></i>
+              <a href="mailto:ravindragaikwad1818@gmail.com">ravindragaikwad1818@gmail.com</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-phone"></i>
+              <a href="tel:+919665689951">+91 9665689951</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Pune, Maharashtra</span>
+            </li>
+            <li>
+              <i class="fa-brands fa-whatsapp"></i>
+              <a href="https://wa.me/919665689951" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Search / Inquiry Widget Bar -->
+      <div class="footer-query-widget">
+        <a href="https://wa.me/919665689951" target="_blank" class="query-link">
+          <div class="query-search-box">
+            <span class="query-input-placeholder" id="typedQueryText">
+              Looking for a Full Stack Developer for your next project?
+            </span>
+            <div class="query-arrow-btn">
+              <i class="fa-solid fa-paper-plane"></i>
+            </div>
+          </div>
+        </a>
+        <div class="query-disclaimer">
+          Available for freelance projects, full-time engineering roles, and system development.
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-sub-bar">
+        <p>© 2026 Ravindra. All Rights Reserved.</p>
+        <p>Designed &amp; Developed by <span class="accent-text">Ravindra</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll To Top Button -->
   <a href="#" class="scroll-top" title="Back to top">
     <i class="fa-solid fa-arrow-up"></i>
   </a>
 
   <!-- ================= SCRIPTS & 3D MOTION ENGINE ================= -->
   <script>
+    // --- 0. EmailJS Configuration ---
+    const EMAILJS_PUBLIC_KEY = "xCNKARwjC_I--h1Xa";
+    const SERVICE_ID = "service_25gvqff";
+    const TEMPLATE_ID = "template_3bi2fes";
+
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    const contactForm = document.getElementById("contactForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const btnText = document.getElementById("btnText");
+    const btnIcon = document.getElementById("btnIcon");
+    const formStatus = document.getElementById("formStatus");
+
+    if (contactForm) {
+      contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        submitBtn.disabled = true;
+        btnText.textContent = "Sending...";
+        btnIcon.className = "fa-solid fa-spinner fa-spin";
+        formStatus.className = "form-status";
+        formStatus.textContent = "";
+
+        emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
+          .then((response) => {
+            submitBtn.disabled = false;
+            btnText.textContent = "Sent Successfully!";
+            btnIcon.className = "fa-solid fa-check";
+            formStatus.className = "form-status success";
+            formStatus.textContent = "Thank you! Your message has been sent successfully. I will get back to you soon.";
+            contactForm.reset();
+
+            setTimeout(() => {
+              btnText.textContent = "Send Message";
+              btnIcon.className = "fa-solid fa-paper-plane";
+            }, 4000);
+          })
+          .catch((error) => {
+            console.error("EmailJS Error:", error);
+            submitBtn.disabled = false;
+            btnText.textContent = "Failed to Send";
+            btnIcon.className = "fa-solid fa-triangle-exclamation";
+            formStatus.className = "form-status error";
+            formStatus.textContent = "Oops! Network error or blocked request. Please reach out directly at ravindragaikwad1818@gmail.com or via WhatsApp.";
+
+            setTimeout(() => {
+              btnText.textContent = "Send Message";
+              btnIcon.className = "fa-solid fa-paper-plane";
+            }, 5000);
+          });
+      });
+    }
+
     // --- 1. Lenis Smooth Scroll Setup ---
     const lenis = new Lenis({
       duration: 1.1,
@@ -1180,7 +1982,6 @@
       touchMultiplier: 1.5,
     });
 
-    // Sync Lenis with GSAP ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -1189,7 +1990,6 @@
     });
     gsap.ticker.lagSmoothing(0);
 
-    // Smooth Anchor Navigation
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
@@ -1357,11 +2157,10 @@
       delay: 0.2
     });
 
-    // --- 6. 3D Project Deck Scroll & Unfold Engine ---
+    // --- 6. 3D Project Deck Scroll Engine ---
     const deckMM = gsap.matchMedia();
 
     deckMM.add("(min-width: 993px)", () => {
-      // Set Initial Compact 3D Perspective Stack
       gsap.set("#deck-card-1", {
         y: 0,
         z: 0,
@@ -1400,7 +2199,6 @@
 
       gsap.set(".deck-card .tech-tag", { opacity: 0, scale: 0.6, y: 10 });
 
-      // Pinned Scrubbed 3D Unfold Timeline
       const deckTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: "#projects-pin-section",
@@ -1414,7 +2212,6 @@
       });
 
       deckTimeline
-        // Unfold Card 1 smoothly upwards with flattened 3D perspective
         .to("#deck-card-1", {
           y: -245,
           z: 30,
@@ -1426,7 +2223,6 @@
           duration: 0.6,
           ease: "power2.out"
         }, 0)
-        // Center Card 2 into view
         .to("#deck-card-2", {
           y: 0,
           z: 20,
@@ -1438,7 +2234,6 @@
           duration: 0.6,
           ease: "power2.out"
         }, 0)
-        // Send Card 3 down into clean separated position
         .to("#deck-card-3", {
           y: 245,
           z: 10,
@@ -1450,7 +2245,6 @@
           duration: 0.6,
           ease: "power2.out"
         }, 0)
-        // Reveal and pop tags dynamically
         .to(".deck-card .tech-tag", {
           opacity: 1,
           scale: 1,
@@ -1460,7 +2254,6 @@
           ease: "back.out(1.8)"
         }, 0.2);
 
-      // --- 7. Interactive 3D Cursor Parallax Tilt (Desktop) ---
       const cards = document.querySelectorAll(".deck-card");
       cards.forEach((card) => {
         card.addEventListener("mousemove", (e) => {
@@ -1491,7 +2284,6 @@
       };
     });
 
-    // Mobile/Tablet Fallback Animation
     deckMM.add("(max-width: 992px)", () => {
       document.querySelectorAll(".deck-card").forEach((card) => {
         gsap.from(card, {
@@ -1507,7 +2299,7 @@
       });
     });
 
-    // --- 8. Interactive Spring Physics for Skill Cards ---
+    // --- 7. Skill Cards Interactive Motion ---
     document.querySelectorAll(".skill-card").forEach((card) => {
       card.addEventListener("mouseenter", () => {
         gsap.to(card, {
@@ -1545,6 +2337,47 @@
         }
       });
     });
+
+    // --- 8. Dynamic Typing Widget in Footer ---
+    const devQueries = [
+      "Looking for a Full Stack Developer for your next web app?",
+      "Need scalable backend architectures using Java Spring Boot?",
+      "Want responsive, high-performance UI built with React?",
+      "Ready to collaborate on a new project? Let's talk!"
+    ];
+
+    let queryIdx = 0;
+    let charIdx = 0;
+    let deleting = false;
+    const queryElem = document.getElementById("typedQueryText");
+
+    function cycleQueries() {
+      if (!queryElem) return;
+
+      const activeStr = devQueries[queryIdx];
+      if (deleting) {
+        queryElem.textContent = activeStr.substring(0, charIdx - 1);
+        charIdx--;
+      } else {
+        queryElem.textContent = activeStr.substring(0, charIdx + 1);
+        charIdx++;
+      }
+
+      let delay = deleting ? 25 : 55;
+
+      if (!deleting && charIdx === activeStr.length) {
+        delay = 2200;
+        deleting = true;
+      } else if (deleting && charIdx === 0) {
+        deleting = false;
+        queryIdx = (queryIdx + 1) % devQueries.length;
+        delay = 350;
+      }
+
+      setTimeout(cycleQueries, delay);
+    }
+
+    document.addEventListener("DOMContentLoaded", cycleQueries);
   </script>
 </body>
 </html>
